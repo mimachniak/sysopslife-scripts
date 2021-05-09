@@ -1,16 +1,16 @@
 <#  
 .SYNOPSIS  
-    Create Azure Active Directory and assign license to group
+    Configure Windows Server for SQL Server installation.
 .DESCRIPTION  
-    Script will create group with dedicated naming convention, list all SKU available in tenant,
-    assigned SKU license to group.
- 
-    
+    Prepare all depends for SQL server installation on Windows Server.
+    * Net
+    * Firewall
+    * PageIO file
+  
 .NOTES  
-    File Name  : AAD-Groups-with-SKU-License.ps1 
+    File Name  : SQLServer-Windows-prep.ps1 
     Author     : Michal Machniak  
     Requires   : PowerShell V5.1
-    Modules    : AzureAD and AzureADLicensing
 .LINK
 
     Github: https://github.com/mimachniak/sysopslife-scripts
