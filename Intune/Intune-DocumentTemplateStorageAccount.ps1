@@ -32,7 +32,7 @@ $TemplateFolderName = 'Office Templates' # Folder name on desktop when files wil
 
 
     $MyDocumentsPath = [Environment]::GetFolderPath("MyDocuments") # Get default location of Documents
-    $CustomTemplatesLocation = $MyDocumentsPath+"\"+$TemplateFolderName #Flder for custom templates
+    $CustomTemplatesLocation = $MyDocumentsPath+"\"+$TemplateFolderName #Folder for custom templates
 
     if ((Test-Path $CustomTemplatesLocation) -eq $false)
         {
