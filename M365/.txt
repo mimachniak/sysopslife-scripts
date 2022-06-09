@@ -1,0 +1,59 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20220609221519
+Username: SYS4OPS-DESKTOP\mmach
+RunAs User: SYS4OPS-DESKTOP\mmach
+Configuration Name: 
+Machine: SYS4OPS-DESKTOP (Microsoft Windows NT 10.0.22000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 22256
+PSVersion: 5.1.22000.653
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22000.653
+BuildVersion: 10.0.22000.653
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Git\Private\sysopslife-scripts\M365\.txt
+Log file crated in :  C:\Git\Private\sysopslife-scripts\M365
+Data for connect ot SPO Tenant
+bba727cf-210b-4c10-b7c3-a3d734c5bf10
+dbe24f04-1a8d-494e-8aad-0d1674fd71bd
+Connect to tenant [bba727cf-210b-4c10-b7c3-a3d734c5bf10] graph API witch SharePoint List
+Graph API access token generated
+Data for connect tt AAD Tenant
+bba727cf-210b-4c10-b7c3-a3d734c5bf10
+0d05f0d9-547c-4cde-afb2-46f80eea0728
+Connect to tenant [bba727cf-210b-4c10-b7c3-a3d734c5bf10] graph API Azure Active Directory Users
+Graph API access token generated
+SPO Hostname: [sys4opshub.sharepoint.com]
+SPO Site ID: [sys4opshub.sharepoint.com,6b3afc06-874b-4e1f-ac41-0b0f0e202ba9,689de4dd-6ad5-4dab-a491-2d2a20473608]
+https://graph.microsoft.com/v1.0/sites/sys4opshub.sharepoint.com,6b3afc06-874b-4e1f-ac41-0b0f0e202ba9,689de4dd-6ad5-4dab-a491-2d2a20473608/lists/OrganizationContacts
+SPO List ID: [8b188b85-d8f3-4545-abbf-054305c6e1e2]
+PS>TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:268 char:18
++ ...    $data = (Invoke-WebRequest -Method Get -Uri $url -Headers @{Author ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExcep
+tion
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:268 char:18
++ ...    $data = (Invoke-WebRequest -Method Get -Uri $url -Headers @{Author ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+List of users loaded:  1
+Report Data ready to export ...
+Number of Users exported: 1
+Number of Users added to list: 0
+Number of Users updated to list: 0
+Number of Users skipped to list: 0
+**********************
+Windows PowerShell transcript end
+End time: 20220609221521
+**********************
