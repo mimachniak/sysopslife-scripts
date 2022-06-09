@@ -1,0 +1,117 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20220609223328
+Username: SYS4OPS-DESKTOP\mmach
+RunAs User: SYS4OPS-DESKTOP\mmach
+Configuration Name: 
+Machine: SYS4OPS-DESKTOP (Microsoft Windows NT 10.0.22000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 22256
+PSVersion: 5.1.22000.653
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22000.653
+BuildVersion: 10.0.22000.653
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Git\Private\sysopslife-scripts\M365\.txt
+Log file crated in :  C:\Git\Private\sysopslife-scripts\M365
+Data for connect ot SPO Tenant
+bba727cf-210b-4c10-b7c3-a3d734c5bf10
+dbe24f04-1a8d-494e-8aad-0d1674fd71bd
+Connect to tenant [bba727cf-210b-4c10-b7c3-a3d734c5bf10] graph API witch SharePoint List
+Graph API access token generated
+Data for connect tt AAD Tenant
+bba727cf-210b-4c10-b7c3-a3d734c5bf10
+0d05f0d9-547c-4cde-afb2-46f80eea0728
+Connect to tenant [bba727cf-210b-4c10-b7c3-a3d734c5bf10] graph API Azure Active Directory Users
+Graph API access token generated
+This is AAD token eyJ0eXAiOiJKV1QiLCJub25jZSI6ImFfSHExU3N4Mzl4eGQ3dm1Ib2VDRmJHLWxpa0NWVmt5bWJ6NVY0eDVuMk0iLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iYmE3MjdjZi0yMTBiLTRjMTAtYjdjMy1hM2Q3MzRjNWJmMTAvIiwiaWF0IjoxNjU0ODA2NTExLCJuYmYiOjE2NTQ4MDY1MTEsImV4cCI6MTY1NDgxMDQxMSwiYWlvIjoiRTJaZ1lEZ1RyY0d4ZTgzTUExMjlqa2srQXVWSEFRPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJELUFBRC1SZWFkIiwiYXBwaWQiOiIwZDA1ZjBkOS01NDdjLTRjZGUtYWZiMi00NmY4MGVlYTA3MjgiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iYmE3MjdjZi0yMTBiLTRjMTAtYjdjMy1hM2Q3MzRjNWJmMTAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiIzOTA4YzVjNC1hZjZjLTRkNzctOTkzZS01Mjg4MDgyNDE1YjAiLCJyaCI6IjAuQVlFQXp5ZW51d3NoRUV5M3c2UFhOTVdfRUFNQUFBQUFBQUFBd0FBQUFBQUFBQUNCQUFBLiIsInJvbGVzIjpbIk1haWxib3hTZXR0aW5ncy5SZWFkIiwiRGlyZWN0b3J5LlJlYWQuQWxsIiwiVXNlci5SZWFkLkFsbCJdLCJzdWIiOiIzOTA4YzVjNC1hZjZjLTRkNzctOTkzZS01Mjg4MDgyNDE1YjAiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiRVUiLCJ0aWQiOiJiYmE3MjdjZi0yMTBiLTRjMTAtYjdjMy1hM2Q3MzRjNWJmMTAiLCJ1dGkiOiJveXFjblZEbHJFLTdfMVJpQXFCY0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX3RjZHQiOjE2MjQyNjQ2MDZ9.jI-Qu3-Cqg59wxEPj6UItPwf0t6v218KdtwAyC2wHTRHqbCO6-87I0VqniMbEFh-UMznO5LQXdkC6W4mc0os0OxZ9CzcakHrzznpQdrk-v4lywS0NZKA4P-Uc-CqGtEAS0mgEVmez3gq2S_RM8hO8HC4iuuiu3xVZhfjix1mvkTc4IFLLhHNOjVMdLQbPPlfxy6batxJ7NJIyzpXid2Ee58nv8IzFuOPra7L8bTOoXG-RoieABaL9d3JyK45HaTDU7x1gfwoj0jRaO3IbdOCCSvaGjeIp2RX4symFnhIF959QMtVbYfWCjReHrv6dZhFeJHj46SKiE87_PGskTtlYA
+SPO Hostname: [sys4opshub.sharepoint.com]
+SPO Site ID: [sys4opshub.sharepoint.com,6b3afc06-874b-4e1f-ac41-0b0f0e202ba9,689de4dd-6ad5-4dab-a491-2d2a20473608]
+SPO List ID: [8b188b85-d8f3-4545-abbf-054305c6e1e2]
+Loading Azure Active Directory list of users
+List of users loaded:  12
+Prepare to [UPDATE] User witch ID: [adm.one@sys4opshub.onmicrosoft.com]
+{
+    "fields":  {
+
+               }
+}
+>> TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+WARNING: Exception was caught: The remote server returned an error: (401) Unauthorized.
+PS>TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExcep
+tion
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+User don't have user type mailbox michal.machniak@sys4ops.pl
+Prepare to [UPDATE] User witch ID: [Joe.Doe@sys4ops.pl]
+{
+    "fields":  {
+
+               }
+}
+>> TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+WARNING: Exception was caught: The remote server returned an error: (401) Unauthorized.
+Prepare to [UPDATE] User witch ID: [John.Smith@sys4ops.pl]
+{
+    "fields":  {
+
+               }
+}
+>> TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+WARNING: Exception was caught: The remote server returned an error: (401) Unauthorized.
+PS>TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExcep
+tion
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+User don't have user type mailbox jan.kowalski@sys4ops.pl
+PS>TerminatingError(Invoke-WebRequest): "The remote server returned an error: (401) Unauthorized."
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExcep
+tion
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : The remote server returned an error: (401) Unauthorized.
+At C:\Git\Private\sysopslife-scripts\M365\M365-GAL-sync-witch-SPO-ContactList-Client.ps1:465 char:45
++ ... xSettings = Invoke-WebRequest -Method Get -Uri $m365User_mailboxSetti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+User don't have user type mailbox Tomasz.Kowlaski@sys4ops.pl
+Report Data ready to export ...
+Number of Users exported: 12
+Number of Users added to list: 0
+Number of Users updated to list: 3
+Number of Users skipped to list: 0
+**********************
+Windows PowerShell transcript end
+End time: 20220609223333
+**********************

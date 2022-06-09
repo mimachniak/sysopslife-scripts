@@ -262,10 +262,12 @@ $m365Users = @()
 
 # Filter only Members accounts
 
+Write-Host "Loading Azure Active Directory list of users"
+
 $url = 'https://graph.microsoft.com/v1.0/users?$select=accountEnabled,assignedLicenses,businessPhones,city,companyName,state,country,displayName,department,givenName,jobTitle,mail,mobilePhone,postalCode,preferredLanguage,streetAddress,surname,userType,userPrincipalName&$filter=userType eq ''member'''
  
     While ($url -ne $Null) {
-        $data = (Invoke-WebRequest -Method Get -Uri $url -Headers @{Authorization = "Bearer $graphtoken_aad"}) | ConvertFrom-Json
+        $data = (Invoke-WebRequest -Method Get -Uri $url -Headers @{Authorization = "Bearer $graphtokenRequest_aad"}) | ConvertFrom-Json
         $m365Users += $data.Value
         $url = $data.'@Odata.NextLink'
     }
