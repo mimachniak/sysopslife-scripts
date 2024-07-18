@@ -1,0 +1,128 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "par_location_prefix": {
+            "value": "WEu"
+        },
+        "par_env_prefix": {
+            "value": "D"
+        },
+        "par_instance_number": {
+            "value": "01"
+        },
+        "par_base_name": {
+            "value": "oodo"
+        },
+        "par_tags": {
+            "value": {
+                "Environment": "D",
+                "Importance": "Low",
+                "Infrastucture": "Software",
+                "BusinessImpact": "Low",
+                "CostCenter": "IT",
+                "Management By": "sysOps",     
+                "RequestedBy": "sysOps",   
+                "Location": "West Europe"   
+            }
+        },
+                "par_vnet_address_space": {
+            "value": {
+                "addressPrefixes": [
+                    "172.19.168.0/21" 
+                ]      
+            }
+        },
+        "par_vnet_subnets": {
+            "value": [
+                {
+                    "name": "AzureFirewallSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.174.0/26",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                },
+                {
+                    "name": "GatewaySubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.174.64/26",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                },
+                {
+                    "name": "DmzSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.172.0/25",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                },
+                {
+                    "name": "ApplicationSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.172.128/25",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                },
+                {
+                    "name": "AksSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.168.0/22",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Disabled"
+                    }
+                },
+                {
+                    "name": "BackEndSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.173.0/25",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Disabled"
+                    }
+                },
+                {
+                    "name": "DataBaseSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.173.128/25",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Disabled"
+                    }
+                },
+                {
+                    "name": "ManagmentSubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.175.0/26",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                },
+                {
+                    "name": "IdentitySubnet",
+                    "properties": {
+                        "addressPrefix": "172.19.175.64/26",
+                        "serviceEndpoints": [],
+                        "delegations": [],
+                        "privateEndpointNetworkPolicies": "Enabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                }
+            ]
+        }
+    }
+}
