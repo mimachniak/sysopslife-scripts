@@ -28,11 +28,11 @@ param(
     [Parameter(Mandatory=$True, ParameterSetName='SendMail')]
     [switch]$sendMail,
     [Parameter(Mandatory=$false, ParameterSetName='SendMail')]
-    [String]$EmailFrom = "IT-noreply@accorinvest.com",
+    [String]$EmailFrom = "",
     [Parameter(Mandatory=$false, ParameterSetName='SendMail')]
-    [String]$EmailTo = "Michal.Machniak@euvic.pl",
+    [String]$EmailTo = "",
     [Parameter(Mandatory=$false, ParameterSetName='SendMail')]
-    [String]$SMTPServer = "in-v3.mailjet.com",
+    [String]$SMTPServer = "",
     [Parameter(Mandatory=$false, ParameterSetName='SendMail')]
     [string]$smtpPort = 587,
     [Parameter(Mandatory=$false, ParameterSetName='SendMail')]
