@@ -258,7 +258,7 @@ if ($GenerateExcelFile) {
 
 if ($GenerateHtmlFile) {
   Write-Host "Save raport in Location: $reportFileHtml "
-  ConvertTo-Html -InputObject $cost_report_full | Out-File -FilePath $reportFileHtml
+  ConvertTo-Html -InputObject $cost_report_full -Property CostEUR, CostUSD ,ResourceId, ResourceLocation, SubscriptionName, Tags, ResourceName ,ResourceType, ResourceGroupName -Title "Azure Cost Report - $((Get-Date).ToString("yyyyMMdd"))" -PreContent "Azure Cost Report"  | Out-File -FilePath $reportFileHtml
 } else {
 
   Write-Host "No file generated html"
@@ -276,7 +276,7 @@ if ($sendMail) {
 
   } else {
 
-    $SMTPCredential = Get-AutomationPSCredential -Name 'ITNoReply-MailJet' 
+    $SMTPCredential = Get-AutomationPSCredential -Name 'NoRepleySecret' 
 
   }
 
