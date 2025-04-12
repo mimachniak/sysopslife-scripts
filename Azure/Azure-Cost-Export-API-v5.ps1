@@ -1,5 +1,22 @@
 ## https://stackoverflow.com/questions/34353225/make-parameter-mandatory-based-on-switch-powershell
+<#
+.SYNOPSIS
+This PowerShell script automates the process of generating Azure cost reports for subscriptions within a tenant.
 
+.DESCRIPTION
+This PowerShell script automates the process of generating Azure cost reports for subscriptions within a tenant.	
+It provides options to export the data in Excel and HTML formats, and optionally send the reports via email. The script is designed to work with Azure's Cost Management API and supports interactive or non-interactive authentication.
+
+.PARAMETER GenerateExcelFile - Boolean flag to generate an Excel report (default: `true`).
+.PARAMETER GenerateHtmlFile - Boolean flag to generate an HTML report (default: `false`).
+.PARAMETER reportFilePath - Path to save the generated reports.
+.PARAMETER startDate and endDate - Date range for the cost report (default: previous month).
+.PARAMETER interactiveLogon - Boolean flag for interactive Azure login (default: `true`).
+.PARAMETER Email-related parameters (`sendMail`, `EmailFrom`, `EmailTo`, `SMTPServer`, etc.) for sending reports via email.
+
+.EXAMPLE
+
+#>
 
 # Parameter
 [CmdletBinding(DefaultParameterSetName='DefaultSettings')]
@@ -49,18 +66,17 @@ param(
 #[bool]$GenerateHtmlFile = $false
 
 
-# Step: File name and path generation
+# Step: output file name and path generation
 
 if ($reportFilePath -eq '') {
 
-    $reportFilePath = $PSScriptRoot
+    $reportFilePath = $PSScriptRoot+"\"
 
   } else {
     $reportFilePath
 }
 
 Write-Host "Path: $reportFilePath" -ForegroundColor Red
-
 
 
 # Setup report data
@@ -236,7 +252,7 @@ if ($GenerateExcelFile) {
 
     $wsXls.Cells["A1"].Value = "Date of Generation: "
     $wsXls.Cells["B1"].Value = (Get-Date).ToString("yyyyMMdd")
-    $wsXls.Cells["C1"].Value = "Monthy of the report::"
+    $wsXls.Cells["C1"].Value = "Month of the report:"
     $wsXls.Cells["D1"].Value = ((Get-Date).AddMonths(-1)).ToString("MM")
     $wsXls.Cells["C2"].Value = "Tenant Name:"
     $wsXls.Cells["D2"].Value = (Get-AzTenant).Name
