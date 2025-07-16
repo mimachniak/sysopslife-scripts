@@ -19,6 +19,7 @@
    - send email to users who have never logged in  
    - send summary report email of users and licenses
    - log inactive users to Azure Table Storage and after 3 iterations remove user from Azure DevOps organization
+   - generate report as output to console
 .AUTHOR
     Michal Machniak
 
