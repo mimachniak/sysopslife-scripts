@@ -42,3 +42,6 @@ resource res_secuirty_group_v1 'Microsoft.Graph/groups@beta' = {
 
 
 }
+
+output out_security_group_beta_id string = res_secuirty_group_beta.id
+output out_security_group_v1_id string = res_secuirty_group_v1.id
