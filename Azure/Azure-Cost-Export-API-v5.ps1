@@ -113,6 +113,19 @@ if ($interactiveLogon) {
 # Get Token of currecnt session
 
 $token = (Get-AzAccessToken).Token
+
+if ($token -is [System.Security.SecureString]) {
+    Write-Host "Token is SecureString" -ForegroundColor Green
+
+    $token = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto(
+    [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($token)
+    )
+
+} else {
+    Write-Host "Token is Plain String" -ForegroundColor Yellow
+
+}
+
 $authHeader = @{  
   'Content-Type'='application/json'  
   'Authorization'="Bearer $token" 
