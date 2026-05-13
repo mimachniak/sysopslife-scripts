@@ -1,0 +1,33 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+metadata:
+  name: ads-admin-users-configuration
+  version: 1.0.0
+  description: Active Directory configuration for administrative user
+  Microsoft.DSC:
+    requiredSecurityContext: current # this is the default and just used as an example indicating this config works for admins and non-admins
+
+parameters:
+  DomainName:
+    type: string
+    defaultValue: "contoso.org"
+  DomainRootPath:
+    type: string
+    defaultValue: "DC=contoso,DC=org"
+  Password:
+    type: secureObject
+resources:
+  - name: Active Directory admin - mmachniak
+    type: ActiveDirectoryDsc/ADUser
+    properties: 
+      Ensure: Present
+      UserName: sup.mmachniak
+      CommonName: "SUP-Michal Machniak"
+      DisplayName: "Michał Machniak"
+      GivenName: Michal
+      Surname: Machniak
+      UserPrincipalName: "[concat('sup.mmachniak@', parameters('DomainName'))]"
+      Password: "[parameters('Password')]"
+      DomainName: "[parameters('DomainName')]"
+      Path: "[concat('OU=Users.Special.NoSync,OU=Accounts,OU=Production,', parameters('DomainRootPath'))]"
+      PasswordNeverResets: true
+      

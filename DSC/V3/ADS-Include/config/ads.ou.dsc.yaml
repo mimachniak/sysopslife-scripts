@@ -1,0 +1,237 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+metadata:
+  name: ads-ou-configuration
+  version: 1.0.0
+  description: Active Directory configuration for organizational units
+  Microsoft.DSC:
+    requiredSecurityContext: current # this is the default and just used as an example indicating this config works for admins and non-admins
+
+parameters:
+  DomainRootPath:
+    type: string
+    defaultValue: "DC=contoso,DC=org"
+resources:
+  - name: Active Directory Root Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Production
+      Path: "[parameters('DomainRootPath')]"
+      Description: "Production OU for All organizational objects"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+
+# Accounts OU for better organization and delegation of administration
+
+  - name: Active Directory Accounts Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Accounts
+      Path: "[concat('OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Accounts OU for all user and service accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Root Organizational Unit')]"
+
+  - name: Active Directory Users Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that can be synchonized to Microsoft 365 or used for on-premises authentication"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+  - name: Active Directory Users.NoSync Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users.NoSync
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that cannot be synchronized to Microsoft 365 and are used for on-premises authentication only"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+  - name: Active Directory Users.Service Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users.Service
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that are used for service accounts and can be synchronized to Microsoft 365"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+  - name: Active Directory Users.Service.NoSync Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users.Service.NoSync
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that are used for service accounts and can be synchronized to Microsoft 365"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+  - name: Active Directory Users.Special Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users.Special
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that are used for special accounts and can be synchronized to Microsoft 365"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+  - name: Active Directory Users.Special.NoSync Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Users.Special.NoSync
+      Path: "[concat('OU=Accounts,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "OU for Users accounts that are used for special accounts and cannot be synchronized to Microsoft 365"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Accounts Organizational Unit')]"
+
+# Devices OU with Computers and Servers OUs underneath for better organization and delegation of administration
+
+  - name: Active Directory Devices Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Devices
+      Path: "[concat('OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Devices OU for all computer and device accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Root Organizational Unit')]"
+
+  - name: Active Directory Computers Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Computers
+      Path: "[concat('OU=Devices,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Computers OU for all computer accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Devices Organizational Unit')]"
+
+  - name: Active Directory Servers Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Servers
+      Path: "[concat('OU=Devices,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Servers OU for all server accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Devices Organizational Unit')]"
+
+  - name: Active Directory Servers Tier0 Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Tier0
+      Path: "[concat('OU=Servers,','OU=Devices,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Servers Tier0 OU for all server accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Servers Organizational Unit')]"
+
+  - name: Active Directory Servers Tier1 Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Tier1
+      Path: "[concat('OU=Servers,','OU=Devices,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Servers Tier1 OU for all server accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Servers Organizational Unit')]"
+
+  - name: Active Directory Servers Tier2 Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Tier2
+      Path: "[concat('OU=Servers,','OU=Devices,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Servers Tier2 OU for all server accounts"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Servers Organizational Unit')]"
+
+# Groups OU for better organization and delegation of administration
+
+  - name: Active Directory Groups Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Groups
+      Path: "[concat('OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Groups OU for all security and distribution groups"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Root Organizational Unit')]"
+
+  - name: Active Directory Delegation Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Delegation
+      Path: "[concat('OU=Groups,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Delegation OU for all delegation-related groups"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Groups Organizational Unit')]"
+
+  - name: Active Directory Distribution Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Distribution
+      Path: "[concat('OU=Groups,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Distribution OU for all distribution-related groups"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Groups Organizational Unit')]"
+
+  - name: Active Directory Security Organizational Unit
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: Security
+      Path: "[concat('OU=Groups,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Security OU for all security-related groups"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Groups Organizational Unit')]"
+
+  - name: Active Directory Security Organizational Unit - SecurityRestricted
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: SecurityRestricted
+      Path: "[concat('OU=Security,OU=Groups,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Security Restricted only OU for all security-related groups with restricted permissions to prevent accidental changes to group membership and permissions"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Security Organizational Unit')]"
+
+  - name: Active Directory Security Organizational Unit - SecurityGeneral
+    type: ActiveDirectoryDsc/ADOrganizationalUnit
+    properties: 
+      Name: SecurityGeneral
+      Path: "[concat('OU=Security,OU=Groups,','OU=Production,', parameters('DomainRootPath'))]"
+      Description: "Security General OU for all security-related groups with general permissions"
+      ProtectedFromAccidentalDeletion: true
+      ensure: Present
+      dependsOn: 
+        - "[resourceId('ActiveDirectoryDsc/ADOrganizationalUnit','Active Directory Security Organizational Unit')]"
+

@@ -1,0 +1,37 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+resources:
+
+- name: Active Directory Ou structure
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.ou.dsc.yaml
+    parametersFile: parameters\ads.parameters.yaml
+    
+- name: Active Directory Administrative User
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.admin-users.dsc.yaml
+    parametersFile: parameters\ads.admin-user.parameters.yaml
+
+- name: Active Directory Groups Management
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.groups.dsc.yaml
+    parametersFile: parameters\ads.parameters.yaml
+
+- name: Active Directory Groups Membership
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.groups-members.dsc.yaml
+
+- name: Active Directory Groups OU Delegation
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.ou-delegation.dsc.yaml
+    parametersFile: parameters\ads.parameters.yaml
+
+- name: Active Directory Password Policy
+  type: Microsoft.DSC/Include
+  properties:
+    configurationFile: config\ads.finegrained-password-policy.dsc.yaml
+    parametersFile: parameters\ads.parameters.yaml

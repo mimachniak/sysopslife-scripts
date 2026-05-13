@@ -1,0 +1,38 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+
+metadata:
+  Microsoft.DSC:
+    requiredSecurityContext: current # this is the default and just used as an example indicating this config works for admins and non-admins
+resources:
+  - type: Microsoft.DSC.Transitional/PowerShellScript
+    name: CreateSelfSignedCertificate
+    properties:
+      GetScript: |
+          $dnsName = $env:COMPUTERNAME
+          $cert = Get-ChildItem Cert:\LocalMachine\My |
+              Where-Object {
+                  $_.Subject -eq "CN=$dnsName"
+              }
+
+          return @{
+              Result = if ($cert) { "Present" } else { "Absent" }
+              Thumbprint = if ($cert) { $cert.Thumbprint } else { $null }
+          }
+      TestScript: |
+          $dnsName = $env:COMPUTERNAME
+          $cert = Get-ChildItem Cert:\LocalMachine\My |
+              Where-Object {
+                  $_.Subject -eq "CN=$dnsName"
+              }
+
+          return ($null -ne $cert)
+      SetScript: |
+        $dnsName = $env:COMPUTERNAME
+        $cert = Get-ChildItem Cert:\LocalMachine\My |
+              Where-Object {
+                  $_.Subject -eq "CN=$dnsName"
+              }
+        if (-not $cert) {
+            $cert = New-SelfSignedCertificate -DnsName $dnsName -CertStoreLocation "Cert:\LocalMachine\My" -KeyLength 2048 -HashAlgorithm SHA256
+            }
+        return @{ Thumbprint = $cert.Thumbprint }

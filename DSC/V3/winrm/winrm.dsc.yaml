@@ -1,0 +1,88 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+
+metadata:
+  Microsoft.DSC:
+    requiredSecurityContext: restricted # this is the default and just used as an example indicating this config works for admins.
+
+parameters:
+  certThumbprint:
+    type: string
+    description: Thumbprint of the certificate to use for the WinRM HTTPS listener. The certificate must already be installed in the local machine's certificate store.
+    defaultValue: "341B58BC25D182D844B64BF7FC52D1D751625960"
+
+resources:
+# -------------------------------------------------------
+# Create WinRM HTTPS listener
+# -------------------------------------------------------
+
+# Note: The registry keys for WinRM listeners are created under a key with a random GUID name, so we use '*' as a wildcard to find the correct key. This assumes there's only one HTTPS listener configured. In a more complex scenario, additional logic might be needed to identify the correct listener.
+
+- name: WinRM HTTPS listener - Address
+  type: Microsoft.Windows/Registry
+  properties:
+    _exist: true
+    keyPath: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Listener\*+HTTPS
+    valueName: Address
+    valueData:
+      String: "*"
+
+- name: WinRM HTTPS listener - Transport
+  type: Microsoft.Windows/Registry
+  properties:
+    _exist: true
+    keyPath: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Listener\*+HTTPS
+    valueName: Transport
+    valueData:
+      String: "HTTPS"
+
+- name: WinRM HTTPS listener - Port
+  type: Microsoft.Windows/Registry
+  properties:
+    _exist: true
+    keyPath: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Listener\*+HTTPS
+    valueName: Port
+    valueData:
+      DWord: 5986
+- name: WinRM HTTPS listener - certThumbprint
+  type: Microsoft.Windows/Registry
+  properties:
+    _exist: true
+    keyPath: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Listener\*+HTTPS
+    valueName: certThumbprint
+    valueData:
+      String: "[parameters('certThumbprint')]"
+
+- name: WinRM HTTPS listener - hostname
+  type: Microsoft.Windows/Registry
+  properties:
+    _exist: true
+    keyPath: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Listener\*+HTTPS
+    valueName: hostname
+    valueData:
+      String: "[envvar('COMPUTERNAME')]"
+
+- name: WinRM firewall rules
+  type: Microsoft.Windows/FirewallRuleList
+  properties:
+    rules:
+      - name: Windows Remote Management (HTTPS-In)
+        description: Allow inbound TCP traffic on port 5986 for Windows Remote Management (HTTPS-In).
+        applicationName: System
+        protocol: 6
+        localPorts: '5986'
+        direction: Inbound
+        action: Allow
+        enabled: true
+        profiles:
+          - Domain
+          - Private
+
+- name: WinRM Service
+  type: Microsoft.Windows/Service
+  properties:
+    name: WinRM
+    _exist: true
+    status: Running
+    startType: Automatic
+
+

@@ -1,0 +1,25 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+metadata:
+  name: ads-groups-membership
+  version: 1.0.0
+  description: Active Directory configuration of default groups members
+  Microsoft.DSC:
+    requiredSecurityContext: current # this is the default and just used as an example indicating this config works for admins and non-admins
+
+parameters:
+  DomainRootPath:
+    type: string
+    defaultValue: "DC=contoso,DC=org"
+resources:
+
+  - name: Active Directory - Domain Admins group membership
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: Domain Admins
+      Ensure: Present
+      MembersToInclude: 
+        - sup.mmachniak
+
+
+
+

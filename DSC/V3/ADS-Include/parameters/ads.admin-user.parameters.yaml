@@ -1,0 +1,6 @@
+parameters:
+  Password:
+    username: admin
+    password: <secret>
+  DomainRootPath: "DC=contoso,DC=org"
+  DomainName: "contoso.org"

@@ -1,0 +1,235 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+metadata:
+  name: ads-groups-ou-configuration
+  version: 1.0.0
+  description: Active Directory configuration of defualt groups
+  Microsoft.DSC:
+    requiredSecurityContext: current # this is the default and just used as an example indicating this config works for admins and non-admins
+
+parameters:
+  DomainRootPath:
+    type: string
+    defaultValue: "DC=contoso,DC=org"
+resources:
+
+# This configuration defines a security group for delegating permissions on the Production OU in Active Directory. The group is created with full control permissions on the OU, allowing members of the group to manage the OU and its contents effectively.
+
+  - name: Active Directory Production OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-FullControl
+      CommonName: OU-Production-FullControl
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production with full control permissions
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+
+# This configuration defines a security group for delegating permissions on the Production-Accounts OU in Active Directory. The group is created with full control permissions on the OU, allowing members of the group to manage user accounts and other objects within the OU effectively.
+
+  - name: Active Directory Production-Accounts OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-RWD
+      CommonName: OU-Production-Accounts-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts with permissions to manage accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  - name: Active Directory Production-Accounts-Users OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users-RWD
+      CommonName: OU-Production-Accounts-Users-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+      ## User.NoSync
+
+  - name: Active Directory Production-Accounts-Users.NoSync OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users.NoSync-RWD
+      CommonName: OU-Production-Accounts-Users.NoSync-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users.NoSync with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+
+     ## User.Service
+
+  - name: Active Directory Production-Accounts-Users.Service OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users.Service-RWD
+      CommonName: OU-Production-Accounts-Users.Service-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users.Service with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+
+     ## User.Service.NoSync
+
+  - name: Active Directory Production-Accounts-Users.Service.NoSync OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users.Service.NoSync-RWD
+      CommonName: OU-Production-Accounts-Users.Service.NoSync-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users.Service.NoSync with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+     ## User.Service.Special
+
+  - name: Active Directory Production-Accounts-Users.Special OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users.Special-RWD
+      CommonName: OU-Production-Accounts-Users.Special-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users.Special with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+     ## User.Service.Special.NoSync
+
+  - name: Active Directory Production-Accounts-Users.Special.NoSync OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Accounts-Users.Special.NoSync-RWD
+      CommonName: OU-Production-Accounts-Users.Special.NoSync-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Accounts-Users.Special.NoSync with permissions to manage user accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+      
+# Computer objects in the Production-Devices OU are delegated to a security group with permissions to manage computer accounts and other objects within the OU effectively.
+
+  - name: Active Directory Production-Devices OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-RWD
+      CommonName: OU-Production-Devices-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices with permissions to manage computer accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+ ## Computer objects in the Production-Devices-Computers OU are delegated to a security group with permissions to manage computer accounts and other objects within the OU effectively.
+
+  - name: Active Directory Production-Devices-Computers OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-Computers-RWD
+      CommonName: OU-Production-Devices-Computers-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices-Computers with permissions to manage computer accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  ## Server objects in the Production-Devices-Servers OU are delegated to a security group with permissions to manage server accounts and other objects within the OU effectively.
+
+  - name: Active Directory Production-Devices-Servers OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-Servers-RWD
+      CommonName: OU-Production-Devices-Servers-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices-Servers with permissions to manage server accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  - name: Active Directory Production-Devices-Servers-Tier0 OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-Servers-Tier0-RWD
+      CommonName: OU-Production-Devices-Servers-Tier0-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices-Servers-Tier0 with permissions to manage server accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  - name: Active Directory Production-Devices-Servers-Tier1 OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-Servers-Tier1-RWD
+      CommonName: OU-Production-Devices-Servers-Tier1-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices-Servers-Tier1 with permissions to manage server accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  - name: Active Directory Production-Devices-Servers-Tier2 OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Devices-Servers-Tier2-RWD
+      CommonName: OU-Production-Devices-Servers-Tier2-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Devices-Servers-Tier2 with permissions to manage server accounts
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+# Group created for delegating permissions on the Production-Shared OU in Active Directory. The group is created with full control permissions on the OU, allowing members of the group to manage shared resources and other objects within the OU effectively.
+# no root delegation is created as Delegate OU is restricted for Domain Admins and Enterprise Admins groups only, so delegation groups are created for the child OUs only
+# no security delegation is created on the root Production OU as it is restricted for Domain Admins and Enterprise Admins groups only, so delegation groups are created for the child OUs only
+
+  - name: Active Directory Production-Groups-Distribution OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Groups-Distribution-RWD
+      CommonName: OU-Production-Groups-Distribution-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Groups-Distribution with permissions to manage group
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+  - name: Active Directory Production-Groups-Security-SecurityGeneral OU
+    type: ActiveDirectoryDsc/ADGroup
+    properties: 
+      GroupName: OU-Production-Groups-Security-SecurityGeneral-RWD
+      CommonName: OU-Production-Groups-Security-SecurityGeneral-RWD
+      GroupScope: Universal 
+      Category: Security
+      Description: Delegation group for OU Production-Groups-Security-SecurityGeneral with permissions to manage group
+      Path: "[concat('OU=Delegation,OU=Groups,OU=Production,', parameters('DomainRootPath'))]"
+      Ensure: Present
+
+
+
+
