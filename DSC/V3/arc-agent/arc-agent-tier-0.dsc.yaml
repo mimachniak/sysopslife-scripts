@@ -1,0 +1,14 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+metadata:
+  Microsoft.DSC:
+    requiredSecurityContext: elevated # this is the default and just used as an example indicating this config works for admins and non-admins
+resources:
+  - name: Azure Arc - Guest Config for Tier 0
+    type: Microsoft.Azure.Arc/AgentConfiguration
+    properties:
+      guestConfigurationEnabled: false
+      incomingConnectionsEnabled: false
+      extensionAllowlist:
+        - Microsoft.Azure.Monitor/AzureMonitorWindowsAgent
+        - Microsoft.Azure.AzureDefenderForServers/MDE.Windows
+
