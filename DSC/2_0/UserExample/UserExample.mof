@@ -1,0 +1,43 @@
+/*
+@TargetNode='localhost'
+@GeneratedBy=mmach
+@GenerationDate=03/09/2026 21:25:15
+@GenerationHost=EUVIC-MICHAL
+*/
+
+instance of MSFT_Credential as $MSFT_Credential1ref
+{
+UserName = "UserDSC";
+ Password = "P@$$word01!";
+
+};
+
+instance of MSFT_UserResource as $MSFT_UserResource1ref
+{
+ResourceID = "[User]UserExample";
+ ModuleName = "PSDscResources";
+ Password = $MSFT_Credential1ref;
+ ModuleVersion = "2.12.0.0";
+ UserName = "SomeUserName";
+ Ensure = "Present";
+ SourceInfo = "C:\\Users\\mmach\\OneDrive\\Skrypty\\DSC\\AzureDay-example\\dsc-user.ps1::12::9::User";
+ ConfigurationName = "UserExample";
+};
+instance of OMI_ConfigurationDocument
+
+                    {
+ Version="2.0.0";
+
+                        MinimumCompatibleVersion = "1.0.0";
+
+                        CompatibleVersionAdditionalProperties= {"Omi_BaseResource:ConfigurationName"};
+
+                        Author="mmach";
+
+                        GenerationDate="03/09/2026 21:25:15";
+
+                        GenerationHost="EUVIC-MICHAL";
+
+                        Name="UserExample";
+
+                    };

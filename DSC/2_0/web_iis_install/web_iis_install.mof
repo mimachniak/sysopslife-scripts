@@ -1,0 +1,48 @@
+/*
+@TargetNode='localhost'
+@GeneratedBy=mmach
+@GenerationDate=03/09/2026 12:31:16
+@GenerationHost=EUVIC-MICHAL
+*/
+
+instance of MSFT_WindowsFeature as $MSFT_WindowsFeature1ref
+{
+Name = "Web-Server";
+ ModuleVersion = "2.12.0.0";
+ Ensure = "Present";
+ ModuleName = "PSDscResources";
+ SourceInfo = "C:\\Users\\mmach\\OneDrive\\Skrypty\\DSC\\AzureDay-example\\GuestConfiguration\\dsc-web.ps1::10::9::WindowsFeature";
+ ResourceID = "[WindowsFeature]IIS";
+ ConfigurationName = "web_iis_install";
+};
+instance of MSFT_WindowsFeature as $MSFT_WindowsFeature2ref
+{
+Name = "Web-Mgmt-Console";
+ ModuleVersion = "2.12.0.0";
+ Ensure = "Present";
+ ModuleName = "PSDscResources";
+ SourceInfo = "C:\\Users\\mmach\\OneDrive\\Skrypty\\DSC\\AzureDay-example\\GuestConfiguration\\dsc-web.ps1::16::9::WindowsFeature";
+ ResourceID = "[WindowsFeature]IIS_Managment_tools";
+
+DependsOn = {
+    "[WindowsFeature]IIS"};
+ ConfigurationName = "web_iis_install";
+};
+instance of OMI_ConfigurationDocument
+
+                    {
+ Version="2.0.0";
+
+                        MinimumCompatibleVersion = "1.0.0";
+
+                        CompatibleVersionAdditionalProperties= {"Omi_BaseResource:ConfigurationName"};
+
+                        Author="mmach";
+
+                        GenerationDate="03/09/2026 12:31:16";
+
+                        GenerationHost="EUVIC-MICHAL";
+
+                        Name="web_iis_install";
+
+                    };
