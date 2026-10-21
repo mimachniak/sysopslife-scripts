@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Recovery Services Vault",
+  "description": "Deploys a Recovery Services Vault in Azure.",
+  "summary": "Module to deploy a Recovery Services Vault with backup capabilities.",
+  "owner": "platform-team",
+  "support": "azure-admin@euvic.pl"
+}

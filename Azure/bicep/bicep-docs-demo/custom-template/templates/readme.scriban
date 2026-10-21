@@ -1,0 +1,52 @@
+# {{ module.name }}
+
+{{ module.description }}
+
+## Version: {{ custom.Version }}
+
+## OCI Url: {{ custom.oci }}
+
+## Resource types and API Version
+| Resource Type | Existing |
+| :-- | :-- |
+{{~ for resourceType in module.resourceTypes ~}}
+| `{{ resourceType.type }}` | {{ if resourceType.existing }}Yes{{ else }}No{{ end }} |
+{{~ end ~}}
+
+## Parameters
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| :-- | :-- | :-- | :-- |
+{{~ for parameter in module.parameters ~}}
+| `{{ parameter.name }}` | `{{ parameter.type }}` | {{ if parameter.required }}Yes{{ else }}No{{ end }} | {{ parameter.description }} |
+{{~ end ~}}
+{{~ for parameter in module.parameters ~}}
+{{~ if parameter.defaultValue || parameter.allowedValues.size > 0 ~}}
+
+### `{{ parameter.name }}`
+{{~ if parameter.defaultValue ~}}
+
+{{~ if parameter.defaultValue | string.contains "\n" ~}}
+- Default value:
+
+{{ parameter.defaultValueFence }}bicep
+{{ parameter.defaultValue }}
+{{ parameter.defaultValueFence }}
+{{~ else ~}}
+- Default value: `{{ parameter.defaultValue }}`
+{{~ end ~}}
+{{~ end ~}}
+{{~ if parameter.allowedValues.size > 0 ~}}
+
+- Allowed values: {{ for value in parameter.allowedValues }}`{{ value }}`{{ if !for.last }}, {{ end }}{{ end }}
+{{~ end ~}}
+{{~ end ~}}
+{{~ end ~}}
+
+## Outputs
+| Name | Type | Description |
+|------|------|-------------|
+| :-- | :-- | :-- |
+{{~ for output in module.outputs ~}}
+| `{{ output.name }}` | `{{ output.type }}` | {{ output.description }} |
+{{~ end ~}}
